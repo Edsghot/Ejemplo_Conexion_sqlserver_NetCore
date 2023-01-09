@@ -6,11 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 //aqui se hace la configuracion
 
 //para configurar para ver la conexion en memoria
-
 //builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("tareasDb"));
 //para la conexion con base de datos
-builder.Services.AddSqlServer<TareasContext>("Data source=DESKTOP-0MM2HVP;Initial Catalog = TareasDb;Trusted_Connection =True;TrustServerCertificate=True;");
-
+//para windows
+builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("cnTareas"));
+//para ubuntu 
+//builder.Services.AddSqlServer<TareasContext>("Data source=localhost;Initial Catalog = Tareas;User id = sa;password = Edsghot2;TrustServerCertificate=True;");
 
 var app = builder.Build();
 
