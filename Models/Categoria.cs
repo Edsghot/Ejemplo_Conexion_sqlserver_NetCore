@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace minimalApi.Models{
 
@@ -15,7 +16,8 @@ namespace minimalApi.Models{
         public string? Descripcion {get;set;}
         public int? Peso{get;set;}
 
-        //foreign keyEFGDX
+        //foreign keyEFGDX 
+        [JsonIgnore]
         public virtual ICollection<Tarea>? Tareas {get;set;}
     }
 }
