@@ -5,7 +5,11 @@ using minimalApi;
 var builder = WebApplication.CreateBuilder(args);
 //aqui se hace la configuracion
 
-builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("tareasDb"));
+//para configurar para ver la conexion en memoria
+
+//builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("tareasDb"));
+//para la conexion con base de datos
+builder.Services.AddSqlServer<TareasContext>("Data source=DESKTOP-0MM2HVP;Initial Catalog = TareasDb;Trusted_Connection =True;TrustServerCertificate=True;");
 
 
 var app = builder.Build();
