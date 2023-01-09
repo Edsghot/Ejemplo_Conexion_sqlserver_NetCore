@@ -18,12 +18,17 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 //creamos un empoint para ver la conexion
-app.MapGet("/dbConexion",async ([FromServices] TareasContext dbContext) => {
+app.MapGet("/dbConexion", ([FromServices] TareasContext dbContext) =>
+{
 
     //Nos asegura que la base de datos esta creada y si no hay lo crea
     dbContext.Database.EnsureCreated();//devuelve un booleano
 
-    return Results.Ok("Base de datos en memoria: "+dbContext.Database.IsInMemory());
+    return Results.Ok("Base de datos en memoria: " + dbContext.Database.IsInMemory());
 });
 
+//para recuperar las listas
+app.MapGet("/api/tareas",async([FromServices] TareasContext dbContext)=>{
+    return Results.Ok(dbContext.tareas);
+});
 app.Run();
